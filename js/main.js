@@ -2,7 +2,12 @@ var totalSemesters = 0;
 
 function loadForm(){
     var inputTotalSemseter = $('#inputTotalSemseter')[0].value;
-    // alert(inputTotalSemseter)
+
+    if(inputTotalSemseter == "0" || inputTotalSemseter == "" || isNaN(inputTotalSemseter)){
+        $('#inputTotalSemseter')[0].focus();
+        alert("Invalid Total Semesters!");
+        return;
+    }
 
     var str = '';
 
@@ -26,6 +31,8 @@ function loadForm(){
 
     $('#semesterForm')[0].innerHTML = str;
 
+    $('#resultForm')[0].innerHTML = "";
+
     totalSemesters = inputTotalSemseter;
 }
 
@@ -36,8 +43,23 @@ function calculateCGPA(){
     var arr = [];
 
     for(i=1;i<=totalSemesters;i++){
-        var credits = parseFloat($('#sem_' + i).contents().find('.credits')[0].value);
-        var cgpa = parseFloat($('#sem_' + i).contents().find('.cgpa')[0].value);
+        var credits = $('#sem_' + i).contents().find('.credits')[0].value;
+        var cgpa = $('#sem_' + i).contents().find('.cgpa')[0].value;
+
+        if(credits == "0" || credits == "" || isNaN(credits)){
+            $('#sem_' + i).contents().find('.credits')[0].focus();
+            alert("Invalid Credits Value of Semester " + i + "!");
+            return;
+        }
+
+        if(cgpa == "0" || cgpa == "" || isNaN(cgpa)){
+            $('#sem_' + i).contents().find('.cgpa')[0].focus();
+            alert("Invalid CGPA Value of Semester " + i + "!");
+            return;
+        }
+
+        var credits = parseFloat(credits);
+        var cgpa = parseFloat(cgpa);
 
         totalCredits += credits;
         total += cgpa * credits;
