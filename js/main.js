@@ -112,4 +112,6 @@ function init(){
     }
 }
 
-init()
+$(document).ready(function(){
+    init();
+});
