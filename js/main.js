@@ -34,6 +34,8 @@ function loadForm(){
     $('#resultForm')[0].innerHTML = "";
 
     totalSemesters = inputTotalSemseter;
+    
+    setActions();
 }
 
 function clearForm(){
@@ -120,4 +122,24 @@ $(document).ready(function(){
             loadForm();
         }
     });
+
+    
 });
+
+function setActions(){
+    $('.credits').on("keydown", function(e) {
+        if (e.keyCode === 13) {
+            this.parentElement.nextElementSibling.children[0].focus();
+        }
+    });
+
+    $('.cgpa').on("keydown", function(e) {
+        if (e.keyCode === 13) {
+            if(this.parentElement.parentElement.nextElementSibling.type == "submit"){
+                calculateCGPA();
+            } else {
+                this.parentElement.parentElement.nextElementSibling.children[1].children[0].focus();
+            }
+        }
+    });
+}
