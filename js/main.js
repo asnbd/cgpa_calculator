@@ -36,6 +36,15 @@ function loadForm(){
     totalSemesters = inputTotalSemseter;
 }
 
+function clearForm(){
+    for(i=0;i<$('.cgpa').length;i++){
+        $('.cgpa')[i].value = "";
+        $('.credits')[i].value = "";
+    }
+
+    $('#resultForm')[0].innerHTML = "";
+}
+
 function calculateCGPA(){
     var totalCredits = 0;
     var total = 0;
