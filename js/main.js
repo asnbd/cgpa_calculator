@@ -114,4 +114,11 @@ function init(){
 
 $(document).ready(function(){
     init();
+
+    $("#inputTotalSemseter").on("keydown", function(e) {
+        if (e.keyCode === 13) {
+            loadForm();
+        }
+    });
+      
 });
