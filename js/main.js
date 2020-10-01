@@ -43,6 +43,49 @@ function loadForm(){
     setActions();
 }
 
+function loadBAUST(dept){
+    var inputTotalSemseter = 8;
+    $('#inputTotalSemseter')[0].value = inputTotalSemseter;
+
+    var str = '';
+    var cseCredits = [];
+
+    switch(dept){
+        case 'cse3':
+            cseCredits = [20, 20.25, 20.25, 20.25, 20, 19.5, 17.25, 22.5];
+            break;
+        default:
+            cseCredits = [20, 20.25, 20.25, 20.25, 20, 19.5, 17.25, 22.5];
+            break;
+    }
+
+    for(i=1;i<=inputTotalSemseter;i++){
+        str += '\
+        <!-- Semester ' + i + ' -->\
+        <div id="sem_' + i + '" class="form-row">\
+            <div class="form-group col-auto my-1">Semester ' + i + ':</div>\
+            <div class="form-group col">\
+                <input type="text" value="' + cseCredits[i-1] + '" class="form-control credits" placeholder="Credits">\
+            </div>\
+            <div class="form-group col">\
+                <input type="text" class="form-control cgpa" placeholder="GPA">\
+            </div>\
+        </div>\
+        ';
+    }
+
+    str += '\
+        <button id="calculateBtn" class="btn btn-primary" onclick="calculateCGPA()">Calculate</button>';
+
+    $('#semesterForm')[0].innerHTML = str;
+
+    $('#resultForm')[0].innerHTML = "";
+
+    totalSemesters = inputTotalSemseter;
+    
+    setActions();
+}
+
 function clearForm(){
     for(i=0;i<$('.cgpa').length;i++){
         $('.cgpa')[i].value = "";
