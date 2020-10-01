@@ -9,6 +9,11 @@ function loadForm(){
         return;
     }
 
+    if(inputTotalSemseter < 0){
+        $('#inputTotalSemseter')[0].value *= -1;
+        inputTotalSemseter *= -1;
+    }
+
     var str = '';
 
     for(i=1;i<=inputTotalSemseter;i++){

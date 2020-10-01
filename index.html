@@ -19,8 +19,8 @@
             <h1 class="text-center">CGPA Calculator</h1>
             <div class="form-group">
                 <label for="exampleInputEmail1">Total Semesters</label>
-                <input type="number" class="form-control" id="inputTotalSemseter" aria-describedby="emailHelp">
-                <small id="emailHelp" class="form-text text-muted">Enter Total Number of Semesters</small>
+                <input type="number" value="8" min="1" max="100" class="form-control" id="inputTotalSemseter" aria-describedby="inputTotalSemseterHelp">
+                <small id="inputTotalSemseterHelp" class="form-text text-muted">Enter Total Number of Semesters</small>
             </div>
             <button class="btn btn-primary" onclick="loadForm()">GO</button>
             <button class="btn btn-danger" onclick="clearForm()">Clear</button>
