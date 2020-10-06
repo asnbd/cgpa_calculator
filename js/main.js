@@ -224,8 +224,17 @@ function processParameters(){
                     loadData('cse3', res);
                     calculateCGPA();
                 } else {
-                    console.log("ID Not Found!")
+                    console.log("ID Not Found!");
+                    res = {
+                        'credits':[0],
+                        'gpa': [0],
+                        'id': 0,
+                        'batch': 0
+                    };
+                    loadData('cse3', res);
                 }
+
+                
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert(xhr.status);
