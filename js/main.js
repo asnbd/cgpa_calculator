@@ -44,20 +44,26 @@ function loadForm(){
 }
 
 function loadData(dept, data){
-    var inputTotalSemseter = data['credits'].length;
-    $('#inputTotalSemseter')[0].value = inputTotalSemseter;
-
     var str = '';
-    var cseCredits = [];
+    var credits = [];
 
-    switch(dept){
-        case 'cse3':
-            cseCredits = [20, 20.25, 20.25, 20.25, 20, 19.5, 17.25, 22.5];
-            break;
-        default:
-            cseCredits = [20, 20.25, 20.25, 20.25, 20, 19.5, 17.25, 22.5];
-            break;
+    if(data == null){
+        switch(dept){
+            case 'cse3':
+                credits = [20, 20.25, 20.25, 20.25, 20, 19.5, 17.25, 22.5];
+                break;
+            default:
+                credits = [20, 20.25, 20.25, 20.25, 20, 19.5, 17.25, 22.5];
+                break;
+        }
+        gpa = [];
+    } else {
+        credits = data['credits'];
+        gpa = data['gpa'];
     }
+
+    var inputTotalSemseter = credits.length;
+    $('#inputTotalSemseter')[0].value = inputTotalSemseter;
 
     for(i=1;i<=inputTotalSemseter;i++){
         str += '\
@@ -65,10 +71,10 @@ function loadData(dept, data){
         <div id="sem_' + i + '" class="form-row">\
             <div class="form-group col-auto my-1">Semester ' + i + ':</div>\
             <div class="form-group col">\
-                <input type="text" value="' + data['credits'][i-1] + '" class="form-control credits" placeholder="Credits">\
+                <input type="text" value="' + credits[i-1] + '" class="form-control credits" placeholder="Credits">\
             </div>\
             <div class="form-group col">\
-                <input type="text" value="' + data['gpa'][i-1] + '" class="form-control cgpa" placeholder="GPA">\
+                <input type="text" value="' + ((gpa.length==0)?'':gpa[i-1]) + '" class="form-control cgpa" placeholder="GPA">\
             </div>\
         </div>\
         ';
@@ -233,8 +239,6 @@ function processParameters(){
                     };
                     loadData('cse3', res);
                 }
-
-                
             },
             error: function(xhr, ajaxOptions, thrownError){
                 alert(xhr.status);
