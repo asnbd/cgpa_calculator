@@ -43,8 +43,8 @@ function loadForm(){
     setActions();
 }
 
-function loadBAUST(dept){
-    var inputTotalSemseter = 8;
+function loadData(dept, data){
+    var inputTotalSemseter = data['credits'].length;
     $('#inputTotalSemseter')[0].value = inputTotalSemseter;
 
     var str = '';
@@ -65,10 +65,10 @@ function loadBAUST(dept){
         <div id="sem_' + i + '" class="form-row">\
             <div class="form-group col-auto my-1">Semester ' + i + ':</div>\
             <div class="form-group col">\
-                <input type="text" value="' + cseCredits[i-1] + '" class="form-control credits" placeholder="Credits">\
+                <input type="text" value="' + data['credits'][i-1] + '" class="form-control credits" placeholder="Credits">\
             </div>\
             <div class="form-group col">\
-                <input type="text" class="form-control cgpa" placeholder="GPA">\
+                <input type="text" value="' + data['gpa'][i-1] + '" class="form-control cgpa" placeholder="GPA">\
             </div>\
         </div>\
         ';
@@ -171,7 +171,7 @@ $(document).ready(function(){
         }
     });
 
-    
+    processParameters();
 });
 
 function setActions(){
@@ -191,3 +191,78 @@ function setActions(){
         }
     });
 }
+
+
+function processParameters(){
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    if(urlParams.has('id')){
+        const id = urlParams.get('id')
+        console.log(id);
+
+        var res = {};
+        $.ajax({
+            url: "data.json",
+            success: function(result) {
+                //console.log(result["id"][id]);
+
+                if(result['id'].hasOwnProperty(id)){
+                    var idData = result['id'][id];
+                    var batch = idData['batch'];
+                    var gpa = idData['gpa'];
+
+                    res = {
+                        'credits':result['credits'][batch],
+                        'gpa': gpa,
+                        'id': id,
+                        'batch': batch
+                    };
+
+                    console.log(res);
+                    loadData('cse3', res);
+                    calculateCGPA();
+                } else {
+                    console.log("ID Not Found!")
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                alert(xhr.status);
+                alert(thrownError);
+            }
+        });
+
+        
+
+    }
+}
+
+// function getJSONData(id){
+//     var res = {};
+//     $.ajax({
+//         url: "data.json",
+//         success: function(result) {
+//             //console.log(result["id"][id]);
+
+//             var idData = result['id'][id];
+//             var batch = idData['batch'];
+//             var gpa = idData['gpa'];
+
+//             res = {
+//                 'credits':result['credits'][batch],
+//                 'gpa': gpa,
+//                 'id': id,
+//                 'batch': batch
+//             };
+
+//             //console.log(res);
+
+//             return res;
+//         },
+//         error: function(xhr, ajaxOptions, thrownError){
+//             alert(xhr.status);
+//             alert(thrownError);
+//         }
+//       });
+// }
