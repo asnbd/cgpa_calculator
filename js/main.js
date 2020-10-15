@@ -58,12 +58,22 @@ function loadData(dept, data){
         }
         gpa = [];
     } else {
+        id = data['id'];
         credits = data['credits'];
         gpa = data['gpa'];
+        name = data['name'];
+
+        if(id == 0){
+            str += '<div id="id_info" class="alert alert-danger" role="alert"><strong>Invalid ID / Data doesn\'t exists</strong></div>'
+        } else {
+            str += '<div id="id_info" class="alert alert-warning" role="alert">ID: <strong>' + id + '</strong><br>Name: <strong>' + name + '</strong></div>'
+        }
     }
 
     var inputTotalSemseter = credits.length;
     $('#inputTotalSemseter')[0].value = inputTotalSemseter;
+
+    
 
     for(i=1;i<=inputTotalSemseter;i++){
         str += '\
@@ -97,7 +107,7 @@ function clearForm(){
         $('.cgpa')[i].value = "";
         $('.credits')[i].value = "";
     }
-
+    $('#id_info').remove();
     $('#resultForm')[0].innerHTML = "";
 }
 
@@ -217,12 +227,14 @@ function processParameters(){
                 if(result['id'].hasOwnProperty(id)){
                     var idData = result['id'][id];
                     var batch = idData['batch'];
+                    name = idData['name'];
                     var gpa = idData['gpa'];
 
                     res = {
                         'credits':result['credits'][batch],
                         'gpa': gpa,
                         'id': id,
+                        'name': name,
                         'batch': batch
                     };
 
@@ -235,6 +247,7 @@ function processParameters(){
                         'credits':[0],
                         'gpa': [0],
                         'id': 0,
+                        'name': "Not Found",
                         'batch': 0
                     };
                     loadData('cse3', res);
