@@ -1,6 +1,6 @@
 var totalSemesters = 0;
 // const logServerURL = "http://localhost/server-log";
-const logServerURL = "http://54.90.255.150:8080/log/cgpa";
+const logServerURL = "//54.90.255.150:8080/log/cgpa";
 
 function loadForm(){
     var inputTotalSemseter = $('#inputTotalSemseter')[0].value;
