@@ -1,17 +1,17 @@
 var totalSemesters = 0;
 // const logServerURL = "http://localhost/server-log";
 
-var protocol = "https";
+var protocol = "https://";
 var port = "";
 var ip = "54.90.255.150";
 var dir = "/log/cgpa";
 
 if (window.location.href.indexOf('http://')==0){
-    protocol = "http";
-    port = "8080";
+    protocol = "http://";
+    port = ":8080";
 }
 
-const logServerURL = protocol + "://" + ip + port + dir;
+const logServerURL = protocol + ip + port + dir;
 
 function loadForm(){
     var inputTotalSemseter = $('#inputTotalSemseter')[0].value;
