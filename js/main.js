@@ -3,12 +3,12 @@ var totalSemesters = 0;
 
 var protocol = "https://";
 var port = "";
-var ip = "13.76.249.41";
+var ip = "13.67.104.67";
 var dir = "/log/cgpa";
 
 if (window.location.href.indexOf('http://')==0){
     protocol = "http://";
-    port = ":8080";
+    //port = ":8080";
 }
 
 const logServerURL = protocol + ip + port + dir;
