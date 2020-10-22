@@ -1,4 +1,6 @@
 var totalSemesters = 0;
+// const logServerURL = "http://localhost/server-log";
+const logServerURL = "http://54.90.255.150:8080/log/cgpa";
 
 function loadForm(){
     var inputTotalSemseter = $('#inputTotalSemseter')[0].value;
@@ -150,10 +152,22 @@ function calculateCGPA(){
 
     $('#resultForm')[0].innerHTML = result;
 
-    localStorage.setItem("totalSemesters", totalSemesters);
-    localStorage.setItem("semesterMarks", JSON.stringify(arr));
-    localStorage.setItem("cgpa", cgpa.toFixed(2));
-    localStorage.setItem("totalCredits", totalCredits);
+    // Local Storage
+    // localStorage.setItem("totalSemesters", totalSemesters);
+    // localStorage.setItem("semesterMarks", JSON.stringify(arr));
+    // localStorage.setItem("cgpa", cgpa.toFixed(2));
+    // localStorage.setItem("totalCredits", totalCredits);
+
+    // Log to Server
+    var logData = {};
+    logData['totalSemesters'] = totalSemesters;
+    logData['semesterMarks'] = arr;
+    logData['cgpa_original'] = cgpa;
+    logData['cgpa'] = cgpa.toFixed(2);
+    logData['totalCredits'] = totalCredits;
+    console.log(logData)
+
+    logToServer(logData);
 }
 
 function init(){
@@ -179,7 +193,7 @@ function init(){
 }
 
 $(document).ready(function(){
-    init();
+    //init();
 
     $("#inputTotalSemseter").on("keydown", function(e) {
         if (e.keyCode === 13) {
@@ -258,10 +272,23 @@ function processParameters(){
                 alert(thrownError);
             }
         });
-
-        
-
     }
+}
+
+function logToServer(logData){
+    $.ajax({
+        url: logServerURL + "/log.php",
+        method: "post",
+        data: {data: JSON.stringify(logData)},
+        success: function(result) {
+            console.log(result);
+            
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.log("logToServer(): " + xhr.status);
+            console.log("logToServer(): " + thrownError);
+        }
+    });
 }
 
 // function getJSONData(id){
