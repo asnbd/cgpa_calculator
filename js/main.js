@@ -3,7 +3,7 @@ var totalSemesters = 0;
 
 var protocol = "https://";
 var port = "";
-var ip = "54.90.255.150";
+var ip = "13.76.249.41";
 var dir = "/log/cgpa";
 
 if (window.location.href.indexOf('http://')==0){
