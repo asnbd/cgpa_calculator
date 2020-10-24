@@ -1,15 +1,15 @@
 var totalSemesters = 0;
 // const logServerURL = "http://localhost/server-log";
 
-var protocol = "https://";
+var protocol = "//";
 var port = "";
-var ip = "13.67.104.67";
+var ip = "ubuntu.asswadsarker.me";
 var dir = "/log/cgpa";
 
-if (window.location.href.indexOf('http://')==0){
-    protocol = "http://";
-    //port = ":8080";
-}
+// if (window.location.href.indexOf('http://')==0){
+//     protocol = "http://";
+//     //port = ":8080";
+// }
 
 const logServerURL = protocol + ip + port + dir;
 
