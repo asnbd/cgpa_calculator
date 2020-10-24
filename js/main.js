@@ -287,10 +287,20 @@ function processParameters(){
 }
 
 function logToServer(logData){
+    const queryString = window.location.search;
+
+    const urlParams = new URLSearchParams(queryString);
+
+    var id = "N/A";
+
+    if(urlParams.has('id')){
+        id = urlParams.get('id');
+    }
+
     $.ajax({
         url: logServerURL + "/log.php",
         method: "post",
-        data: {data: JSON.stringify(logData)},
+        data: {id: id, data: JSON.stringify(logData)},
         success: function(result) {
             console.log(result);
             
