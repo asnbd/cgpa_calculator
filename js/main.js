@@ -3,7 +3,7 @@ var totalSemesters = 0;
 
 var protocol = "//";
 var port = "";
-var ip = "ubuntu.asswadsarker.me";
+var ip = "srs-srv.herokuapp.com";
 var dir = "/log/cgpa";
 
 // if (window.location.href.indexOf('http://')==0){
