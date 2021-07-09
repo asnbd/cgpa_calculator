@@ -2,4 +2,4 @@
 
 Online CGPA Calculator for all Universities specially for Bangladesh. Calculate Your CGPA Online.
 
-https://cgpa.asswadsarker.me
+https://asnbd.github.io/cgpa_calculator
