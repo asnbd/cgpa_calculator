@@ -345,30 +345,30 @@ function processParameters() {
   }
 }
 
-function logToServer(logData) {
-  const queryString = window.location.search;
+// function logToServer(logData) {
+//   const queryString = window.location.search;
 
-  const urlParams = new URLSearchParams(queryString);
+//   const urlParams = new URLSearchParams(queryString);
 
-  var id = "N/A";
+//   var id = "N/A";
 
-  if (urlParams.has("id")) {
-    id = urlParams.get("id");
-  }
+//   if (urlParams.has("id")) {
+//     id = urlParams.get("id");
+//   }
 
-  $.ajax({
-    url: logServerURL + "/log.php",
-    method: "post",
-    data: { id: id, data: JSON.stringify(logData) },
-    success: function (result) {
-      console.log(result);
-    },
-    error: function (xhr, ajaxOptions, thrownError) {
-      console.log("logToServer(): " + xhr.status);
-      console.log("logToServer(): " + thrownError);
-    },
-  });
-}
+//   $.ajax({
+//     url: logServerURL + "/log.php",
+//     method: "post",
+//     data: { id: id, data: JSON.stringify(logData) },
+//     success: function (result) {
+//       console.log(result);
+//     },
+//     error: function (xhr, ajaxOptions, thrownError) {
+//       console.log("logToServer(): " + xhr.status);
+//       console.log("logToServer(): " + thrownError);
+//     },
+//   });
+// }
 
 // function getJSONData(id){
 //     var res = {};
