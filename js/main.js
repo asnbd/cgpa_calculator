@@ -221,9 +221,12 @@ function calculateCGPA() {
   cgpaData["totalCredits"] = totalCredits;
   cgpaData["referrer"] = document.referrer;
 
-  var logData = {
-    "cgpa": cgpaData
-  };
+  var logData = {};
+
+  logData["cgpa"] = cgpaData;
+  logData["basic"] = getBasicInfo();
+  logData["screen"] = getScreenInfo();
+  logData["browser"] = getBrowserInfo();
 
   console.log(logData);
 
