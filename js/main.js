@@ -213,13 +213,18 @@ function calculateCGPA() {
   // localStorage.setItem("totalCredits", totalCredits);
 
   // Log to Server
-  var logData = {};
-  logData["totalSemesters"] = totalSemesters;
-  logData["semesterMarks"] = arr;
-  logData["cgpa_original"] = cgpa;
-  logData["cgpa"] = cgpa.toFixed(2);
-  logData["totalCredits"] = totalCredits;
-  logData["referrer"] = document.referrer;
+  var cgpaData = {};
+  cgpaData["totalSemesters"] = totalSemesters;
+  cgpaData["semesterMarks"] = arr;
+  cgpaData["cgpa_original"] = cgpa;
+  cgpaData["cgpa"] = cgpa.toFixed(2);
+  cgpaData["totalCredits"] = totalCredits;
+  cgpaData["referrer"] = document.referrer;
+
+  var logData = {
+    "cgpa": cgpaData
+  };
+
   console.log(logData);
 
   logToServer(logData);
